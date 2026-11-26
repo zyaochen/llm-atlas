@@ -25,9 +25,10 @@
 
 ## 在线版的构建期处理
 
-源文件不改，只在构建时调整，代码在 `docs-site/hooks.py`，单测 `python3 -m unittest discover -s docs-site`。和其他系列仓库一样，它把 GitHub 写法的行内公式转成 KaTeX、给紧跟段落的列表和表格补空行；本仓库另有两处：
+源文件不改，只在构建时调整，代码在 `docs-site/hooks.py`，单测 `python3 -m unittest discover -s docs-site`。这份 hooks.py 和其他系列仓库共用：
 
-- 侧边栏按标题里的层级分组，组名和顺序写在 `mkdocs.yml` 的 `extra.nav_stages`。
+- 把 GitHub 写法的行内公式转成 KaTeX，给紧跟段落的列表和表格补空行。
+- 侧边栏按标题里的层级分组，组名和顺序写在 `mkdocs.yml` 的 `extra.nav_stages`（目前只有本仓库用）。
 - Material 自带的 lunr 在给 TokenSet 状态生成键时，标签和子节点 id 之间没有分隔符，索引大了以后会合并两个不同的状态，三个字以上的中文查询会报错、搜不到结果。构建后给搜索 worker 补上分隔符；Material 升级后这段代码找不到时构建直接失败。
 
 ## 许可
